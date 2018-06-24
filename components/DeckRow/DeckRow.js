@@ -1,6 +1,6 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled from "styled-components/native"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components/native'
 
 const DeckRowTitle = styled.Text`
   text-align: center;
@@ -12,8 +12,8 @@ const DeckRowTitle = styled.Text`
 `
 const DeckRowContainer = styled.TouchableHighlight`
   padding: 25px;
-  borderbottomcolor: #452533;
-  borderbottomwidth: 1;
+  borderBottomColor: #452533;
+  borderBottomWidth: 1;
 `
 export const DeckRow = props => (
   <DeckRowContainer onPress={props.onPress}>
