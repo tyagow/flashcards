@@ -1,3 +1,3 @@
-import { Home } from "./Home"
+import index from './Home'
 
-export default Home
+export default index
