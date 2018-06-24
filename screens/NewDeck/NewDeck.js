@@ -1,14 +1,69 @@
-import React, { PureComponent } from 'react'
-import { Text, View } from 'react-native'
+import React, { Component } from 'react'
+import { TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+import styled from 'styled-components/native'
+import { PropTypes } from 'prop-types'
 
-class NewDeck extends PureComponent {
+import { createDeck } from '../../actions/deckActions'
+import HomeStackNavigation from '../../routes/HomeStackNavigation'
+
+
+const TextInputField = styled.TextInput`
+  margin: 20px;
+`
+const Wrapper = styled.View`
+  padding: 20px;
+`
+
+const NewDeckTitle = styled.Text`
+  text-align: center;
+  font-size: 22;
+  color: #555;
+  margin-left: 40;
+  margin-right: 40;
+  margin-vertical: 10;
+`
+const StyledButtonText = styled.Text`
+  background-color: #000;
+  text-align: center;
+  font-size: 22;
+  color: #fff;
+  margin: 30px;
+  height: 50;
+  padding-top: 10;
+  padding-bottom: 15;
+  margin-vertical: 10;
+`
+
+export class NewDeck extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { title: '' }
+  }
+  newDeck = () => {
+    this.props.navigation.navigate('Home')
+    this.props.createDeck({ ...this.state })
+  }
   render() {
     return (
-      <View>
-        <Text> New Deck </Text>
-      </View>
+      <Wrapper >
+        <NewDeckTitle>What`s the title of your new deck?</NewDeckTitle>
+        <TextInputField value={this.state.title} placeholder="Deck title" onChangeText={title => this.setState({ title })} />
+        <TouchableOpacity onPress={this.newDeck}>
+          <StyledButtonText>Create new deck</StyledButtonText>
+        </TouchableOpacity>
+      </Wrapper>
     )
   }
 }
 
-export default NewDeck
+NewDeck.propTypes = {
+  createDeck: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
+}
+const mapDispatchToProps = dispatch => ({
+  createDeck: title => dispatch(createDeck(title)),
+})
+
+export default connect(undefined, mapDispatchToProps)(NewDeck)
+
