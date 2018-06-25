@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from '../reducers/index'
+import idInjector from '../middlewares/idInjector/idInjector'
 
 const initialState = {}
-const middleware = []
+const middleware = [idInjector]
 
 const store = createStore(
   rootReducer,
