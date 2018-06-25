@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import PropTypes from 'prop-types'
 
 
-export default class DeckDetail extends Component {
+export class DeckDetail extends Component {
   render() {
+    const { title } = this.props.deck
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text>{title}</Text>
       </View>
     )
   }
 }
+DeckDetail.propTypes = {
+  deck: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+}
 
+export default DeckDetail

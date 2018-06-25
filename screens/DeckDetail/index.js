@@ -1,3 +1,3 @@
-import DeckDetail from './DeckDetail'
+import DeckDetailScreen from './DeckDetail'
 
-export default DeckDetail
+export default DeckDetailScreen
