@@ -5,13 +5,7 @@ import { Home } from './Home'
 
 describe('Home Screen', () => {
   it('should render a label', () => {
-    const wrapper = shallow(<Home />)
+    const wrapper = shallow(<Home decks={[]} selectDeck={() => {}} />)
     expect(wrapper).toMatchSnapshot()
   })
-
-  // tit('should render all decks passed by props', () => {
-  //   const decks = [{ title: 'Deck One' }, { title: 'Deck Two' }]
-  //   const wrapper = renderer.create(<Home decks={decks} />).toJSON()
-  //   expect(wrapper.length).toBe(1)
-  // })
 })
