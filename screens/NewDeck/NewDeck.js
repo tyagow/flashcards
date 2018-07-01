@@ -5,7 +5,6 @@ import styled from 'styled-components/native'
 import { PropTypes } from 'prop-types'
 
 import { createDeck } from '../../actions/deckActions'
-import HomeStackNavigation from '../../routes/HomeStackNavigation'
 
 
 const TextInputField = styled.TextInput`
