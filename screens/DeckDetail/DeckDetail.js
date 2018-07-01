@@ -17,13 +17,20 @@ const StyledButtonText = styled.Text`
 `
 
 export class DeckDetail extends Component {
+  addQuestion = () => {
+    this.props.navigation.navigate('NewQuestion')
+  }
   render() {
-    const { title, id } = this.props.deck
+    const { title, id, questions } = this.props.deck
     return (
       <View>
         <Text>{id} - {title}</Text>
-        <TouchableOpacity onPress={this.newDeck}>
+        <Text>Total Questions: {questions && questions.length}</Text>
+        <TouchableOpacity onPress={this.addQuestion}>
           <StyledButtonText>Add Question</StyledButtonText>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
+          <StyledButtonText>Play</StyledButtonText>
         </TouchableOpacity>
       </View>
     )
@@ -33,6 +40,7 @@ DeckDetail.propTypes = {
   deck: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
+    questions: PropTypes.array,
   }).isRequired,
 }
 const mapStateToProps = state => ({ deck: state.decks.item })
