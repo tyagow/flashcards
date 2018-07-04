@@ -20,15 +20,14 @@ const StyledButtonText = styled.Text`
 export class Quiz extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      answered: [],
-    }
   }
   render() {
     const { title, id, questions } = this.props.deck
     return (
       <View>
-        <Text>{id} - {title}</Text>
+        <Text>
+          {id} - {title}
+        </Text>
         <Text>Total Questions: {questions && questions.length}</Text>
         <TouchableOpacity onPress={this.addQuestion}>
           <StyledButtonText>Add Question</StyledButtonText>
@@ -41,10 +40,9 @@ export class Quiz extends Component {
   }
 }
 Quiz.propTypes = {
-  questions: PropTypes.array.isRequired,
+  deck: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({ questions: getQuizQuestions(state) })
 
 export default connect(mapStateToProps)(Quiz)
-
