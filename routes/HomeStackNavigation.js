@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation'
 import HomeScreen from '../screens/Home/Home'
 import DeckDetail from '../screens/DeckDetail'
 import NewQuestion from '../screens/NewQuestion'
-// import Quiz from '../screens/Quiz'
+import QuizGame from '../screens/QuizGame'
 
 const HomeStackNavigation = createStackNavigator({
   Home: {
@@ -15,8 +15,8 @@ const HomeStackNavigation = createStackNavigator({
   NewQuestion: {
     screen: NewQuestion,
   },
-  // Quiz: {
-  //   screen: Quiz,
-  // },
+  QuizGame: {
+    screen: QuizGame,
+  },
 })
 export default HomeStackNavigation
