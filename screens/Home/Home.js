@@ -8,11 +8,10 @@ import { selectDeck } from '../../actions/deckActions'
 
 export class Home extends Component {
   onPressItem = (deck) => {
-    // console.log(`id = ${this.props.navigation.navigate}`)
     // send action DECK_SELECTED
     this.props.selectDeck(deck)
     // navigate to DeckDetail
-    this.props.navigation.navigate('DeckDetail')
+    this.props.navigation.navigate('DeckDetail', { deckTitle: deck.title })
   };
 
   keyExtractor = (item, index) => `${item.title}-${index}`

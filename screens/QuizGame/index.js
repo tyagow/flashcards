@@ -1,3 +1,3 @@
-import QuizScreen from './Quiz'
+import QuizScreen from './QuizGame'
 
 export default QuizScreen

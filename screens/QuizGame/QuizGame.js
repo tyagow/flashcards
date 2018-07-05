@@ -2,47 +2,92 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import styled from 'styled-components/native'
 import getQuizQuestions from '../../selectors/questionSelector'
 import getCurrentQuestion from '../../selectors/questionGameSelector'
+import { TextTitle, TextHighlight } from '../../styles/text'
+import { StyledButtonText } from '../../styles/button'
 
-const StyledButtonText = styled.Text`
-  background-color: #000;
-  text-align: center;
-  font-size: 22;
-  color: #fff;
-  margin: 30px;
-  height: 50;
-  padding-top: 10;
-  padding-bottom: 15;
-  margin-top: 10;
-`
 
 export class QuizGame extends Component {
   constructor(props) {
     super(props)
     this.state = {
       answered: [],
+      isAnswering: false,
+      score: 0,
     }
   }
+  answerQuestion = (question, answerCorrect) => {
+    if (answerCorrect) {
+      const { score } = this.state
+      this.setState({ score: score + 1 })
+    }
+    this.setState(state => ({ answered: [...state.answered, question.id] }))
+    this.toggleAnswer()
+  }
 
-  render() {
-    const { title, id, answer } = getCurrentQuestion(this.state, this.props)
+  toggleAnswer = () => {
+    this.setState(state => ({ isAnswering: !state.isAnswering }))
+  }
+
+  renderHeader = (question) => {
+    if (!this.state.isAnswering) {
+      return (
+        this.renderQuestionCard(question)
+      )
+    }
+    return (
+      this.renderAnswerCard(question)
+    )
+  }
+
+  renderAnswerCard(question) {
     return (
       <View>
-        <Text>
-          {id} - {title}
-        </Text>
-        {/* <TouchableOpacity onPress={this.addQuestion}> */}
-        {/* <StyledButtonText>Add Question</StyledButtonText> */}
-        {/* </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}}>
-          <StyledButtonText>Play</StyledButtonText>
-        </TouchableOpacity> */}
+        <TextTitle>{question.answer}</TextTitle>
+        <TouchableOpacity onPress={() => { this.answerQuestion(question, true) }}>
+          <StyledButtonText>Correct 👍</StyledButtonText>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => { this.answerQuestion(question, false) }}>
+          <StyledButtonText>Wrong 👎</StyledButtonText>
+        </TouchableOpacity>
       </View>
     )
   }
+
+  renderQuestionCard(question) {
+    return (
+      <View>
+        <TextTitle>{question.title}</TextTitle>
+        <TouchableOpacity onPress={this.toggleAnswer}>
+          <TextHighlight>Answer</TextHighlight>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  renderScore() {
+    return (
+      <View>
+        <Text>Your score: {this.state.score} / {this.props.questions.length}</Text>
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Home') }}>
+          <StyledButtonText>Back Home 🔙</StyledButtonText>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  render() {
+    const question = getCurrentQuestion(this.state, this.props)
+    if (question.id) {
+      return this.renderHeader(question)
+    }
+    return (
+      this.renderScore()
+    )
+  }
 }
+
 QuizGame.propTypes = {
   questions: PropTypes.array.isRequired,
 }
