@@ -6,7 +6,12 @@ const initialState = {
   item: {},
 }
 
-export default (state = initialState, action) => {
+const initialStateFull = {
+  items: [{ id: '1', title: 'Deck One', questions: [1, 2] }],
+  item: { id: '1', title: 'Deck One', questions: [1, 2] },
+}
+
+export default (state = initialStateFull, action) => {
   switch (action.type) {
     case NEW_DECK: {
       const deck = { ...action.payload, questions: [] }

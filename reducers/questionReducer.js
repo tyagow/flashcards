@@ -5,7 +5,15 @@ const initialState = {
   item: {},
 }
 
-export default (state = initialState, action) => {
+const initialStateFull = {
+  items: [
+    { id: 1, title: 'Question One Title Here', answer: 'Answer One Question' },
+    { id: 2, title: 'Question Two Title Here', answer: 'Answer Two Question' },
+  ],
+  item: {},
+}
+
+export default (state = initialStateFull, action) => {
   switch (action.type) {
     case NEW_QUESTION: {
       const question = action.payload
