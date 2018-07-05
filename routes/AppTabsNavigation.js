@@ -3,7 +3,7 @@ import { Platform } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 
-import { purple, white } from './../utils/colors'
+import { purple, white, blue } from './../utils/colors'
 import HomeStack from './HomeStackNavigation'
 import { NewDeck } from './../screens'
 
@@ -32,10 +32,10 @@ const Tabs = createBottomTabNavigator(
       header: null,
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === 'ios' ? purple : white,
+      activeTintColor: Platform.OS === 'ios' ? blue : white,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? white : purple,
+        backgroundColor: Platform.OS === 'ios' ? white : blue,
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,
