@@ -25,7 +25,6 @@
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
-    "precommit": "yarn test",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "lint": "eslint src",
