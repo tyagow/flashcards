@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-const getQuestions = state => state.decks.items
+const getQuestions = state => state.questions.items
 const getDeckQuestions = state => state.decks.item.questions
 
 const getQuizQuestions = createSelector(
