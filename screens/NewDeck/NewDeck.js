@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 import { PropTypes } from 'prop-types'
 
 import { createDeck } from '../../actions/deckActions'
-
+import { StyledButtonText } from '../../styles/button'
 
 const TextInputField = styled.TextInput`
   margin: 20px;
@@ -20,18 +20,6 @@ const NewDeckTitle = styled.Text`
   color: #555;
   margin-left: 40;
   margin-right: 40;
-  margin-vertical: 10;
-`
-const StyledButtonText = styled.Text`
-  background-color: #000;
-  text-align: center;
-  font-size: 22;
-  color: #fff;
-  margin: 30px;
-  height: 50;
-  padding-top: 10;
-  padding-bottom: 15;
-  margin-vertical: 10;
 `
 
 export class NewDeck extends Component {
@@ -45,9 +33,13 @@ export class NewDeck extends Component {
   }
   render() {
     return (
-      <Wrapper >
+      <Wrapper>
         <NewDeckTitle>What`s the title of your new deck?</NewDeckTitle>
-        <TextInputField value={this.state.title} placeholder="Deck title" onChangeText={title => this.setState({ title })} />
+        <TextInputField
+          value={this.state.title}
+          placeholder="Deck title"
+          onChangeText={title => this.setState({ title })}
+        />
         <TouchableOpacity onPress={this.newDeck}>
           <StyledButtonText>Create new deck</StyledButtonText>
         </TouchableOpacity>
@@ -64,5 +56,7 @@ const mapDispatchToProps = dispatch => ({
   createDeck: title => dispatch(createDeck(title)),
 })
 
-export default connect(undefined, mapDispatchToProps)(NewDeck)
-
+export default connect(
+  undefined,
+  mapDispatchToProps,
+)(NewDeck)

@@ -7,7 +7,6 @@ import getCurrentQuestion from '../../selectors/questionGameSelector'
 import { TextTitle, TextHighlight } from '../../styles/text'
 import { StyledButtonText } from '../../styles/button'
 
-
 export class QuizGame extends Component {
   constructor(props) {
     super(props)
@@ -32,23 +31,27 @@ export class QuizGame extends Component {
 
   renderHeader = (question) => {
     if (!this.state.isAnswering) {
-      return (
-        this.renderQuestionCard(question)
-      )
+      return this.renderQuestionCard(question)
     }
-    return (
-      this.renderAnswerCard(question)
-    )
+    return this.renderAnswerCard(question)
   }
 
   renderAnswerCard(question) {
     return (
       <View>
         <TextTitle>{question.answer}</TextTitle>
-        <TouchableOpacity onPress={() => { this.answerQuestion(question, true) }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.answerQuestion(question, true)
+          }}
+        >
           <StyledButtonText>Correct 👍</StyledButtonText>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => { this.answerQuestion(question, false) }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.answerQuestion(question, false)
+          }}
+        >
           <StyledButtonText>Wrong 👎</StyledButtonText>
         </TouchableOpacity>
       </View>
@@ -69,9 +72,16 @@ export class QuizGame extends Component {
   renderScore() {
     return (
       <View>
-        <Text>Your score: {this.state.score} / {this.props.questions.length}</Text>
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Home') }}>
-          <StyledButtonText>Back Home 🔙</StyledButtonText>
+        <TextTitle>Your score</TextTitle>
+        <TextTitle>
+          {this.state.score} / {this.props.questions.length}
+        </TextTitle>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Home')
+          }}
+        >
+          <StyledButtonText>Back Home</StyledButtonText>
         </TouchableOpacity>
       </View>
     )
@@ -82,9 +92,7 @@ export class QuizGame extends Component {
     if (question.id) {
       return this.renderHeader(question)
     }
-    return (
-      this.renderScore()
-    )
+    return this.renderScore()
   }
 }
 

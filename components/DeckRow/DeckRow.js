@@ -8,12 +8,11 @@ const DeckRowTitle = styled.Text`
   color: #555;
   margin-left: 40;
   margin-right: 40;
-  margin-vertical: 10;
 `
 const DeckRowContainer = styled.TouchableHighlight`
   padding: 25px;
-  borderBottomColor: #452533;
-  borderBottomWidth: 1;
+  border-bottom-color: #452533;
+  border-bottom-width: 1;
 `
 export const DeckRow = props => (
   <DeckRowContainer onPress={props.onPress}>

@@ -3,6 +3,7 @@ import HomeScreen from '../screens/Home/Home'
 import DeckDetail from '../screens/DeckDetail'
 import NewQuestion from '../screens/NewQuestion'
 import QuizGame from '../screens/QuizGame'
+import { headerBackgroundColor, headerStyle } from '../styles/header'
 
 const HomeStackNavigation = createStackNavigator({
   Home: {
@@ -11,22 +12,15 @@ const HomeStackNavigation = createStackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
-    navigationOptions: {
-      headerTintColor: '#fff',
-      headerStyle: {
-        height: 30,
-        backgroundColor: '#0f0',
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
+    navigationOptions: headerStyle,
   },
   NewQuestion: {
     screen: NewQuestion,
+    navigationOptions: headerStyle,
   },
   QuizGame: {
     screen: QuizGame,
+    navigationOptions: headerStyle,
   },
 })
 export default HomeStackNavigation
