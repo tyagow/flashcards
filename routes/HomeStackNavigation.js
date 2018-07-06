@@ -11,6 +11,16 @@ const HomeStackNavigation = createStackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: '#fff',
+      headerStyle: {
+        height: 30,
+        backgroundColor: '#0f0',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
   },
   NewQuestion: {
     screen: NewQuestion,
