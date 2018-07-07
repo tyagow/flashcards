@@ -32,7 +32,10 @@ describe('deckReducer', () => {
         item: { id: 13, title: 'Deck #1', questions: [] },
       },
       { type: NEW_QUESTION, payload: obj },
-    )).toEqual({ items: [], item: { id: 13, title: 'Deck #1', questions: [1] } })
+    )).toEqual({
+      items: [{ id: 13, title: 'Deck #1', questions: [1] }],
+      item: { id: 13, title: 'Deck #1', questions: [1] },
+    })
   })
 
   it('should add payload.id to item.questions and preserve item.questions ids', () => {
@@ -43,7 +46,10 @@ describe('deckReducer', () => {
         item: { id: 13, title: 'Deck #1', questions: [1] },
       },
       { type: NEW_QUESTION, payload: obj },
-    )).toEqual({ items: [], item: { id: 13, title: 'Deck #1', questions: [1, 2] } })
+    )).toEqual({
+      items: [{ id: 13, title: 'Deck #1', questions: [1, 2] }],
+      item: { id: 13, title: 'Deck #1', questions: [1, 2] },
+    })
   })
   it('should update items with given payload', () => {
     const obj = [{ id: 2 }]

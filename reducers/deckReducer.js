@@ -24,8 +24,9 @@ export default (state = initialState, action) => {
     }
     case NEW_QUESTION: {
       const question = action.payload
-      const { item } = state
-      return { ...state, item: { ...item, questions: [...item.questions, question.id] } }
+      const { item, items } = state
+      const newItem = { ...item, questions: [...item.questions, question.id] }
+      return { items: [...items.filter(e => e.id !== item.id), newItem], item: newItem }
     }
     case UPDATE_DECKS: {
       const { item } = state
