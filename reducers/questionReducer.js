@@ -13,7 +13,7 @@ const initialStateFull = {
   item: {},
 }
 
-export default (state = initialStateFull, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case NEW_QUESTION: {
       const question = action.payload

@@ -1,4 +1,4 @@
-import { NEW_DECK, DECK_SELECTED } from '../actions/deckActions'
+import { NEW_DECK, DECK_SELECTED, LOAD_DECKS, UPDATE_DECKS } from '../actions/deckActions'
 import { NEW_QUESTION } from '../actions/questionActions'
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialStateFull = {
   item: { id: '1', title: 'Deck One', questions: [1, 2] },
 }
 
-export default (state = initialStateFull, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case NEW_DECK: {
       const deck = { ...action.payload, questions: [] }
@@ -26,6 +26,13 @@ export default (state = initialStateFull, action) => {
       const question = action.payload
       const { item } = state
       return { ...state, item: { ...item, questions: [...item.questions, question.id] } }
+    }
+    case UPDATE_DECKS: {
+      const { item } = state
+      if (action.payload) {
+        return { items: action.payload, item }
+      }
+      return state
     }
     default:
       return state
