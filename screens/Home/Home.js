@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, FlatList, TouchableOpacity } from 'react-native'
+import { AsyncStorage, View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 import DeckRow from '../../components/DeckRow'
 import { selectDeck, FETCH_DATA } from '../../actions/deckActions'
 import { StyledButtonText } from '../../styles/button'
+import { DECKS_STORAGE_KEY, QUESTIONS_STORAGE_KEY } from '../../api/api'
 
 export class Home extends Component {
   componentDidMount = () => {
-    // AsyncStorage.removeItem('Flashcards:decks')
+    // AsyncStorage.removeItem(DECKS_STORAGE_KEY)
+    // AsyncStorage.removeItem(QUESTIONS_STORAGE_KEY)
     this.props.loadData()
   }
 
