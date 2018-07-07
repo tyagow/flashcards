@@ -1,16 +1,12 @@
 import apiStorage from './apiStorage'
 import * as api from '../api/api'
-import { NEW_DECK, LOAD_DECKS, FETCH_DECKS } from '../../actions/deckActions'
+import { NEW_DECK, FETCH_DECKS } from '../../actions/deckActions'
 
 jest.mock('../api/api')
-const setupMiddleware = (actionType, decksItems = []) => {
+const setupMiddleware = (actionType, decksItems) => {
   const store = {
     dispatch: jest.fn(),
-    getState: () => {
-      {
-        decksItems
-      }
-    },
+    getState: () => ({ decks: { items: decksItems } }),
   }
   const next = jest.fn()
 
@@ -36,7 +32,7 @@ describe('apiStorage  middleware', () => {
   it('should get any FETCH_DECKS action and call api.loadDecks', () => {
     const decks = [{ id: 1 }, { id: 2 }]
     api.loadDecks.mockReturnValue(decks)
-    const { store } = setupMiddleware(FETCH_DECKS)
+    setupMiddleware(FETCH_DECKS, [])
     expect(api.loadDecks.mock.calls.length).toBe(1)
   })
 })
