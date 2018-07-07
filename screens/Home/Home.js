@@ -6,12 +6,11 @@ import PropTypes from 'prop-types'
 import DeckRow from '../../components/DeckRow'
 import { selectDeck, FETCH_DATA } from '../../actions/deckActions'
 import { StyledButtonText } from '../../styles/button'
-import { DECKS_STORAGE_KEY, QUESTIONS_STORAGE_KEY } from '../../api/api'
+import { setLocalNotification } from '../../utils/helpers'
 
 export class Home extends Component {
   componentDidMount = () => {
-    // AsyncStorage.removeItem(DECKS_STORAGE_KEY)
-    // AsyncStorage.removeItem(QUESTIONS_STORAGE_KEY)
+    setLocalNotification()
     this.props.loadData()
   }
 
