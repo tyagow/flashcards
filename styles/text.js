@@ -6,6 +6,16 @@ export const TextTitle = styled.Text`
   color: #000;
   margin: 30px;
 `
+export const DeckCards = styled.Text`
+  text-align: center;
+  font-size: 18;
+  color: #888;
+  margin-left: 40;
+  margin-right: 40;
+  margin-top: 10;
+  margin-bottom: 40;
+`
+
 export const TextHighlight = styled.Text`
   text-align: center;
   text-decoration: underline;

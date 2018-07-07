@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { StyledButtonText } from '../../styles/button'
 import styled from 'styled-components/native'
+import { DeckCards } from '../../styles/text'
 
 const DeckTitle = styled.Text`
   text-align: center;
@@ -12,16 +13,6 @@ const DeckTitle = styled.Text`
   margin-left: 40;
   margin-right: 40;
   margin-top: 40;
-`
-
-const DeckCards = styled.Text`
-  text-align: center;
-  font-size: 18;
-  color: #888;
-  margin-left: 40;
-  margin-right: 40;
-  margin-top: 10;
-  margin-bottom: 40;
 `
 
 export class DeckDetail extends Component {
