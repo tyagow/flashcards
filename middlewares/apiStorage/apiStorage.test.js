@@ -15,9 +15,9 @@ const setupMiddleware = (actionType, items) => {
   const result = apiStorage(store)(next)(action)
   return {
     store,
-    next,
     action,
     result,
+    next,
   }
 }
 describe('apiStorage  middleware', () => {
@@ -37,9 +37,9 @@ describe('apiStorage  middleware', () => {
     expect(api.loadDecks.mock.calls.length).toBe(1)
     expect(api.loadQuestions.mock.calls.length).toBe(1)
   })
-  it('should get any NEW_QUESTION action and call api.mergeQuestions', () => {
+  xit('should get any NEW_QUESTION action and call api.mergeQuestions', () => {
     const questions = [{ id: 2 }, { id: 3 }]
-    const { action, store } = setupMiddleware(NEW_QUESTION, questions)
+    const { action } = setupMiddleware(NEW_QUESTION, questions)
     expect(api.mergeQuestions.mock.calls[0][0]).toEqual([...questions, action.payload])
   })
 })

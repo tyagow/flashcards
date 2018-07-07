@@ -11,7 +11,7 @@ const apiStorage = store => next => (action) => {
     case FETCH_DATA: {
       loadDecks(store.dispatch)
       loadQuestions(store.dispatch)
-      break
+      return {}
     }
     case NEW_QUESTION: {
       const deck = store.getState().decks.item
