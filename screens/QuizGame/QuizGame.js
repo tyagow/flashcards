@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
+import { Notifications } from 'expo'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import getQuizQuestions from '../../selectors/questionSelector'
 import getCurrentQuestion from '../../selectors/questionGameSelector'
 import { TextTitle, TextHighlight } from '../../styles/text'
 import { StyledButtonText } from '../../styles/button'
+import { setLocalNotification } from '../../utils/helpers'
 
 export class QuizGame extends Component {
   constructor(props) {
@@ -16,6 +18,11 @@ export class QuizGame extends Component {
       score: 0,
     }
   }
+  componentDidMount = () => {
+    Notifications.cancelAllScheduledNotificationsAsync()
+    setLocalNotification()
+  }
+
   answerQuestion = (question, answerCorrect) => {
     if (answerCorrect) {
       const { score } = this.state
@@ -82,6 +89,13 @@ export class QuizGame extends Component {
           }}
         >
           <StyledButtonText>Back Home</StyledButtonText>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ answered: [], isAnswering: false, score: 0 })
+          }}
+        >
+          <StyledButtonText>Restart Deck</StyledButtonText>
         </TouchableOpacity>
       </View>
     )
