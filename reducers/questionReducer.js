@@ -1,4 +1,4 @@
-import { NEW_QUESTION } from '../actions/questionActions'
+import { NEW_QUESTION, UPDATE_QUESTIONS } from '../actions/questionActions'
 
 const initialState = {
   items: [],
@@ -20,6 +20,8 @@ export default (state = initialState, action) => {
       const questions = state.items
       return { ...state, items: [...questions, question] }
     }
+    case UPDATE_QUESTIONS:
+      return { ...state, items: action.payload }
     default:
       return state
   }
