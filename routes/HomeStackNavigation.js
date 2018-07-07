@@ -3,7 +3,7 @@ import HomeScreen from '../screens/Home/Home'
 import DeckDetail from '../screens/DeckDetail'
 import NewQuestion from '../screens/NewQuestion'
 import QuizGame from '../screens/QuizGame'
-import { headerBackgroundColor, headerStyle } from '../styles/header'
+import { headerStyle } from '../styles/header'
 
 const HomeStackNavigation = createStackNavigator({
   Home: {

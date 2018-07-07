@@ -11,6 +11,6 @@ describe('DeckDetail', () => {
   })
   it('should render deck Title', () => {
     const wrapper = renderer.create(<DeckDetail deck={deck} />).toJSON()
-    expect(wrapper.children[0].children[2]).toEqual('Deck One')
+    expect(wrapper.children[0].children[0]).toEqual('Deck One')
   })
 })
