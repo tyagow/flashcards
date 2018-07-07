@@ -1,32 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
-import DeckRow from '../../components/DeckRow'
-import { selectDeck } from '../../actions/deckActions'
 
+import DeckRow from '../../components/DeckRow'
+import { selectDeck, FETCH_DECKS } from '../../actions/deckActions'
+import { StyledButtonText } from '../../styles/button'
 
 export class Home extends Component {
+  componentDidMount = () => {
+    // AsyncStorage.removeItem('Flashcards:decks')
+    this.props.loadDecks()
+  }
+
   onPressItem = (deck) => {
     // send action DECK_SELECTED
     this.props.selectDeck(deck)
     // navigate to DeckDetail
     this.props.navigation.navigate('DeckDetail', { deckTitle: deck.title })
-  };
+  }
 
   keyExtractor = (item, index) => `${item.title}-${index}`
 
   renderItem = ({ item }) => (
-    <DeckRow
-      id={item.title}
-      onPress={() => this.onPressItem(item)}
-      deck={item}
-    />
-  );
-
+    <DeckRow id={item.title} onPress={() => this.onPressItem(item)} deck={item} />
+  )
+  renderNoEntry = () => {
+    if (this.props.decks.length == 0) {
+      return (
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('newDeck')}>
+          <StyledButtonText>Create new deck</StyledButtonText>
+        </TouchableOpacity>
+      )
+    }
+  }
   render() {
     return (
       <View>
+        {this.renderNoEntry()}
         <FlatList
           data={this.props.decks}
           keyExtractor={this.keyExtractor}
@@ -45,7 +56,10 @@ const mapStateToProps = state => ({ decks: state.decks.items })
 
 const mapDispatchToProps = dispatch => ({
   selectDeck: deck => dispatch(selectDeck(deck)),
+  loadDecks: () => dispatch({ type: FETCH_DECKS }),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Home)
