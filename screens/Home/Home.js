@@ -4,13 +4,13 @@ import { View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 
 import DeckRow from '../../components/DeckRow'
-import { selectDeck, FETCH_DECKS } from '../../actions/deckActions'
+import { selectDeck, FETCH_DATA } from '../../actions/deckActions'
 import { StyledButtonText } from '../../styles/button'
 
 export class Home extends Component {
   componentDidMount = () => {
     // AsyncStorage.removeItem('Flashcards:decks')
-    this.props.loadDecks()
+    this.props.loadData()
   }
 
   onPressItem = (deck) => {
@@ -56,7 +56,7 @@ const mapStateToProps = state => ({ decks: state.decks.items })
 
 const mapDispatchToProps = dispatch => ({
   selectDeck: deck => dispatch(selectDeck(deck)),
-  loadDecks: () => dispatch({ type: FETCH_DECKS }),
+  loadData: () => dispatch({ type: FETCH_DATA }),
 })
 
 export default connect(

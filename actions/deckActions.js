@@ -1,4 +1,4 @@
-export const FETCH_DECKS = 'FETCH_DECKS'
+export const FETCH_DATA = 'FETCH_DATA'
 export const UPDATE_DECKS = 'UPDATE_DECKS'
 export const NEW_DECK = 'NEW_DECK'
 export const createDeck = deckTitle => ({

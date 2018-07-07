@@ -1,5 +1,5 @@
-import { NEW_DECK, FETCH_DECKS } from '../../actions/deckActions'
-import { mergeDecks, loadDecks } from '../api/api'
+import { NEW_DECK, FETCH_DATA } from '../../actions/deckActions'
+import { mergeDecks, loadDecks, loadQuestions } from '../api/api'
 
 const apiStorage = store => next => (action) => {
   switch (action.type) {
@@ -7,8 +7,9 @@ const apiStorage = store => next => (action) => {
       mergeDecks([...store.getState().decks.items, action.payload])
       return next(action)
     }
-    case FETCH_DECKS: {
+    case FETCH_DATA: {
       loadDecks(store)
+      loadQuestions(store)
     }
     default:
       return next(action)
