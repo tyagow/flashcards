@@ -1,13 +1,13 @@
 import apiStorage from './apiStorage'
-import * as api from '../api/api'
+import * as api from '../../api/api'
 import { NEW_DECK, FETCH_DATA } from '../../actions/deckActions'
 import { NEW_QUESTION } from '../../actions/questionActions'
 
-jest.mock('../api/api')
-const setupMiddleware = (actionType, decksItems) => {
+jest.mock('../../api/api')
+const setupMiddleware = (actionType, items) => {
   const store = {
     dispatch: jest.fn(),
-    getState: () => ({ decks: { items: decksItems } }),
+    getState: () => ({ decks: { items, item: { id: 1 } }, questions: { items } }),
   }
   const next = jest.fn()
 
@@ -39,11 +39,7 @@ describe('apiStorage  middleware', () => {
   })
   it('should get any NEW_QUESTION action and call api.mergeQuestions', () => {
     const questions = [{ id: 2 }, { id: 3 }]
-    const { action, store } = setupMiddleware(NEW_DECK, questions)
-    expect(api.mergeQuestions.mock.calls.length).toBe(1)
-    expect(api.mergeQuestions.mock.calls[0][0]).toEqual([
-      ...store.getState().questions.items,
-      action.payload,
-    ])
+    const { action, store } = setupMiddleware(NEW_QUESTION, questions)
+    expect(api.mergeQuestions.mock.calls[0][0]).toEqual([...questions, action.payload])
   })
 })
