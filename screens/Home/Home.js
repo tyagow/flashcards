@@ -41,7 +41,6 @@ export class Home extends Component {
         </TouchableOpacity>
       )
     }
-    return {}
   }
   render() {
     return (
