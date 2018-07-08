@@ -43,3 +43,5 @@ export function setLocalNotification() {
       }
     })
 }
+
+export default setLocalNotification
