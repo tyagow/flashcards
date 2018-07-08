@@ -29,6 +29,7 @@ export class NewDeck extends Component {
   }
   newDeck = () => {
     this.props.navigation.navigate('Home')
+    this.setState({ title: '' })
     this.props.createDeck({ ...this.state })
   }
   render() {
