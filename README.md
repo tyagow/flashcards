@@ -2,7 +2,11 @@
 
 ## Description
 
+Flashcard App developed for React Udacity Nanodegree Program.
+
 ## Getting started
+
+**Tested on Android**
 
 ### Installation
 
@@ -19,6 +23,18 @@ yarn start
 ```sh
 yarn test
 ```
+
+### Packages
+
+- react-native
+- expo
+- redux
+- reselect
+- prop-types
+- styled-components
+- enzyme
+- ESLint AirBnb config
+- prettier
 
 ### Style Guide
 
