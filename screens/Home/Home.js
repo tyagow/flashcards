@@ -9,7 +9,14 @@ import { StyledButtonText } from '../../styles/button'
 import { setLocalNotification } from '../../utils/helpers'
 
 export class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: true,
+    }
+  }
   componentDidMount = () => {
+    setTimeout(() => this.setState({ isLoading: false }), 2000)
     setLocalNotification()
     this.props.loadData()
   }
@@ -27,13 +34,14 @@ export class Home extends Component {
     <DeckRow id={item.title} onPress={() => this.onPressItem(item)} deck={item} />
   )
   renderNoEntry = () => {
-    if (this.props.decks.length == 0) {
+    if (this.props.decks.length === 0 && !this.state.isLoading) {
       return (
         <TouchableOpacity onPress={() => this.props.navigation.navigate('newDeck')}>
           <StyledButtonText>Create new deck</StyledButtonText>
         </TouchableOpacity>
       )
     }
+    return {}
   }
   render() {
     return (
