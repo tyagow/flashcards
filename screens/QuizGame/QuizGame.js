@@ -45,22 +45,32 @@ export class QuizGame extends Component {
 
   renderAnswerCard(question) {
     return (
-      <View>
-        <TextTitle>{question.answer}</TextTitle>
-        <TouchableOpacity
-          onPress={() => {
+      <View style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+
+          <TextTitle>
+            {question.answer}
+          </TextTitle>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
             this.answerQuestion(question, true)
           }}
-        >
-          <StyledButtonText>Correct 👍</StyledButtonText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
+          >
+            <StyledButtonText>Correct 👍</StyledButtonText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
             this.answerQuestion(question, false)
           }}
-        >
-          <StyledButtonText>Wrong 👎</StyledButtonText>
-        </TouchableOpacity>
+          >
+            <StyledButtonText>Wrong 👎</StyledButtonText>
+          </TouchableOpacity>
+          <TextTitle>
+            Progress: {this.state.answered.length + 1}  / {this.props.questions.length}
+          </TextTitle>
+        </View>
       </View>
     )
   }
