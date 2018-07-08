@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 import { StyledButtonText } from '../../styles/button'
 import styled from 'styled-components/native'
 import { DeckCards } from '../../styles/text'
+import { textSecondary } from '../../utils/colors'
+import { ViewContainer } from '../../styles/views'
 
 const DeckTitle = styled.Text`
   text-align: center;
   font-size: 22;
-  color: #555;
+  color: ${textSecondary};
   margin-left: 40;
   margin-right: 40;
   margin-top: 40;
@@ -23,9 +25,9 @@ export class DeckDetail extends Component {
     this.props.navigation.navigate('NewQuestion', { deckTitle: this.props.deck.title })
   }
   render() {
-    const { title, id, questions } = this.props.deck
+    const { title, questions } = this.props.deck
     return (
-      <View>
+      <ViewContainer>
         <DeckTitle>{title}</DeckTitle>
         <DeckCards>{questions && questions.length} Cards</DeckCards>
         <TouchableOpacity onPress={this.addQuestion}>
@@ -38,7 +40,7 @@ export class DeckDetail extends Component {
         >
           <StyledButtonText>Play</StyledButtonText>
         </TouchableOpacity>
-      </View>
+      </ViewContainer>
     )
   }
 }

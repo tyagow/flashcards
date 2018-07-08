@@ -6,21 +6,14 @@ import { PropTypes } from 'prop-types'
 
 import { createDeck } from '../../actions/deckActions'
 import { StyledButtonText } from '../../styles/button'
+import { textSecondary } from '../../utils/colors'
+import { TextTitle, TextInputField } from '../../styles/text'
 
-const TextInputField = styled.TextInput`
-  margin: 20px;
-`
+
 const Wrapper = styled.View`
   padding: 20px;
 `
 
-const NewDeckTitle = styled.Text`
-  text-align: center;
-  font-size: 22;
-  color: #555;
-  margin-left: 40;
-  margin-right: 40;
-`
 
 export class NewDeck extends Component {
   constructor(props) {
@@ -35,14 +28,14 @@ export class NewDeck extends Component {
   render() {
     return (
       <Wrapper>
-        <NewDeckTitle>What`s the title of your new deck?</NewDeckTitle>
+        <TextTitle>What`s the title of your new deck?</TextTitle>
         <TextInputField
           value={this.state.title}
           placeholder="Deck title"
           onChangeText={title => this.setState({ title })}
         />
         <TouchableOpacity onPress={this.newDeck}>
-          <StyledButtonText>Create new deck</StyledButtonText>
+          <StyledButtonText style={{ marginTop: 30 }}>Create new deck</StyledButtonText>
         </TouchableOpacity>
       </Wrapper>
     )

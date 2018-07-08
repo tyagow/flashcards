@@ -1,9 +1,9 @@
-import { blue } from '../utils/colors'
+import { textPrimary, primary } from '../utils/colors'
 
-export const headerBackgroundColor = blue
+export const headerBackgroundColor = primary
 
 export const headerStyle = {
-  headerTintColor: '#fff',
+  headerTintColor: textPrimary,
   headerStyle: {
     height: 30,
     backgroundColor: headerBackgroundColor,

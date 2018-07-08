@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { Constants } from 'expo'
 
 import store from './store/store'
-import { purple } from './utils/colors'
+import { primary } from './utils/colors'
 
 import Tabs from './routes/AppTabsNavigation'
 
@@ -18,7 +18,7 @@ MyStatusBar.propTypes = {
   backgroundColor: PropTypes.string,
 }
 MyStatusBar.defaultProps = {
-  backgroundColor: purple,
+  backgroundColor: primary,
 }
 
 const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 export const App = () => (
   <Provider store={store}>
     <View style={styles.container}>
-      <MyStatusBar backgroundColor={purple} barStyle="light-content" />
+      <MyStatusBar backgroundColor={primary} barStyle="light-content" />
       <Tabs />
     </View>
   </Provider>

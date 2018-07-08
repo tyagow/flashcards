@@ -1,9 +1,9 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
-import { Ionicons } from '@expo/vector-icons'
+import { Feather, Entypo } from '@expo/vector-icons'
 
-import { purple, white, blue } from './../utils/colors'
+import { primary, textSecondary, textPrimary, secondary } from './../utils/colors'
 import HomeStack from './HomeStackNavigation'
 import { NewDeck } from './../screens'
 
@@ -14,7 +14,7 @@ const Tabs = createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: {
         tabBarLabel: 'Home',
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={30} color={tintColor} />,
+        tabBarIcon: ({ tintColor }) => <Feather name="list" size={30} color={tintColor} />,
       },
     },
     newDeck: {
@@ -22,7 +22,7 @@ const Tabs = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: 'New Deck',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-add-circle" size={30} color={tintColor} />
+          <Entypo name="add-to-list" size={30} color={tintColor} />
         ),
       },
     },
@@ -32,10 +32,11 @@ const Tabs = createBottomTabNavigator(
       header: null,
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === 'ios' ? blue : white,
+      activeTintColor: Platform.OS === 'ios' ? textSecondary : textPrimary,
+      tintColor: textPrimary,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? white : blue,
+        backgroundColor: Platform.OS === 'ios' ? secondary : primary,
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,

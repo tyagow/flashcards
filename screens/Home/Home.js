@@ -7,6 +7,8 @@ import DeckRow from '../../components/DeckRow'
 import { selectDeck, FETCH_DATA } from '../../actions/deckActions'
 import { StyledButtonText } from '../../styles/button'
 import { setLocalNotification } from '../../utils/helpers'
+import { homeListBackground, viewBackground } from '../../utils/colors'
+import { ViewContainer } from '../../styles/views'
 
 export class Home extends Component {
   constructor(props) {
@@ -44,14 +46,15 @@ export class Home extends Component {
   }
   render() {
     return (
-      <View>
+      <ViewContainer>
         {this.renderNoEntry()}
         <FlatList
+          style={{ backgroundColor: viewBackground }}
           data={this.props.decks}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
         />
-      </View>
+      </ViewContainer>
     )
   }
 }

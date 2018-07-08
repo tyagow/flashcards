@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 import { Notifications } from 'expo'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -8,6 +8,7 @@ import getCurrentQuestion from '../../selectors/questionGameSelector'
 import { TextTitle, TextHighlight } from '../../styles/text'
 import { StyledButtonText } from '../../styles/button'
 import { setLocalNotification } from '../../utils/helpers'
+import { ViewContainer } from '../../styles/views'
 
 export class QuizGame extends Component {
   constructor(props) {
@@ -45,10 +46,18 @@ export class QuizGame extends Component {
 
   renderAnswerCard(question) {
     return (
-      <View style={{ flex: 1 }}>
+      <ViewContainer style={{ flex: 1 }}>
+        <Text style={{
+            height: 30,
+            fontSize: 18,
+            marginTop: 10,
+            justifyContent: 'flex-start',
+          }}
+        >
+            Progress  {this.state.answered.length + 1}  / {this.props.questions.length}
+        </Text>
         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-
-          <TextTitle>
+          <TextTitle style={{ marginTop: 20 }}>
             {question.answer}
           </TextTitle>
         </View>
@@ -67,28 +76,26 @@ export class QuizGame extends Component {
           >
             <StyledButtonText>Wrong 👎</StyledButtonText>
           </TouchableOpacity>
-          <TextTitle>
-            Progress: {this.state.answered.length + 1}  / {this.props.questions.length}
-          </TextTitle>
+
         </View>
-      </View>
+      </ViewContainer>
     )
   }
 
   renderQuestionCard(question) {
     return (
-      <View>
+      <ViewContainer>
         <TextTitle>{question.title}</TextTitle>
         <TouchableOpacity onPress={this.toggleAnswer}>
           <TextHighlight>Answer</TextHighlight>
         </TouchableOpacity>
-      </View>
+      </ViewContainer>
     )
   }
 
   renderScore() {
     return (
-      <View>
+      <ViewContainer>
         <TextTitle>Your score</TextTitle>
         <TextTitle>
           {this.state.score} / {this.props.questions.length}
@@ -107,7 +114,7 @@ export class QuizGame extends Component {
         >
           <StyledButtonText>Restart Deck</StyledButtonText>
         </TouchableOpacity>
-      </View>
+      </ViewContainer>
     )
   }
 
